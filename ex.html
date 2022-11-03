@@ -1,42 +1,41 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
-<script src="https://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
-<script src="https://static.robotwebtools.org/roslibjs/current/roslib.js"></script>
+<!doctype html>
 
-<script>
-const ros = new ROSLIB.Ros();
-ros.connect('ws://localhost:9090');
+<html lang="ko">
 
-const rosTopic = new ROSLIB.Topic({
-	ros : ros,
-	name : '/cloi1/cmd_vel',
-	messageType : 'geometry_msgs/Twist'
-});
+  <head>
 
-const twist = new ROSLIB.Message({
-	linear: {
-		x: 0.25,
-		y: 0,
-		z: 0
-	},
-	angular: {
-		x: 0,
-		y: 0,
-		z: 0.25
-	}
-});
+    <meta name="viewport"content="width=device-width,initial-scale=1,user-scalable=no"/>
 
-function sendTwist(){
-	console.log("sendTwist", rosTopic, twist);
-	rosTopic.publish(twist);
-}
-</script>
-</head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<body>
-	<h1>RubenChoi Test</h1>
-	<button onclick="sendTwist()">Send ROS</button>
-</body>
+    <script src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+
+    <script src="script.js" defer></script>
+
+    <title>ROS2 토픽 예제</title>
+
+  </head>
+
+  <body>
+
+    <CENTER>
+
+      <h2>발행자</h2>
+
+      <input type="text" id="msg" />
+
+      <button id = "publish" onClick="publish()">발행</button>
+
+    </CENTER>
+
+    <CENTER>
+
+      <h2>구독자</h2>
+
+      <p id="subscribe"></p>
+
+    </CENTER>
+
+  </body>
+
 </html>
